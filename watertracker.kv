@@ -1,0 +1,57 @@
+#:kivy 1.0
+#:import kivy kivy
+
+
+<TitleLabel@Label>:
+    size_hint_y: None
+    height: self.texture_size[1] + (self.texture_size[1]/2)
+    bold: True
+
+
+<Button>:
+    font_size: min(self.height, self.width) * .2
+
+
+##### Main #####
+
+<WaterTrackerRoot>:
+    screen_manager: screen_manager
+
+    canvas.before:
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            source: './images/waterfall.jpg'
+    padding: min(root.width, root.height) * .08
+
+    ScreenManager:
+        id: screen_manager
+        StartScreen:
+            name: 'start_screen'
+        AboutScreen:
+            name: 'about_screen'
+
+
+<StartScreen@Screen>:
+    BoxLayout:
+        orientation: 'vertical'
+        spacing: min(root.width, root.height) * .02
+
+        TitleLabel:
+            text: 'Water Tracker'
+            font_size: min(root.height, root.width) * .13
+
+        Button:
+            text: 'Add New'
+        Button:
+            text: 'Stats'
+        Button:
+            text: 'History'
+        Button:
+            text: 'About'
+            on_release: app.root.screen_manager.current = 'about_screen'
+
+
+<AboutScreen@Screen>:
+    Button:
+        text: 'sample'

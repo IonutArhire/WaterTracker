@@ -1,0 +1,3 @@
+title=WaterTracker
+author=Ionut Arhire
+orientation=portrait
