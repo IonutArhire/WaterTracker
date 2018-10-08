@@ -1,5 +1,5 @@
 #:import kivy kivy
-#:kivy 1.0
+#:kivy 1.9.1
 
 
 <TitleLabel@Label>:
@@ -28,11 +28,18 @@
         id: screen_manager
         StartScreen:
             name: 'start_screen'
+        StatsScreen:
+            name: 'stats_screen'
+        HistoryScreen:
+            name: 'history_screen'
         AboutScreen:
             name: 'about_screen'
+        
+        
 
 
 <StartScreen@Screen>:
+
     BoxLayout:
         orientation: 'vertical'
         spacing: min(root.width, root.height) * .02
@@ -45,13 +52,54 @@
             text: 'Add New'
         Button:
             text: 'Stats'
+            on_release: app.root.screen_manager.current = 'stats_screen'
         Button:
             text: 'History'
+            on_release: app.root.screen_manager.current = 'history_screen'
         Button:
             text: 'About'
             on_release: app.root.screen_manager.current = 'about_screen'
 
 
-<AboutScreen@Screen>:
+<StatsScreenLayout@BoxLayout>:
     Button:
         text: 'sample'
+
+
+<HistoryScreenLayout@BoxLayout>:
+    history_list: history_list
+
+    ScrollView:
+        size_hint: (None, None)
+        size: (root.width, root.height)
+        GridLayout:
+            id: history_list
+            cols: 1
+            spacing: 10
+            size_hint_y: None
+            height: self.minimum_height
+
+            
+<HistoryEntry@GridLayout>:
+    cols: 1
+    size_hint: 1, None
+    height: self.minimum_height
+
+    canvas:
+        Color:
+            rgba: 0,0,0,.5
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+
+<HistoryEntryLabel@Label>:
+    text: 'None'
+    size_hint: None, None
+    halign: 'left'
+    size: self.texture_size
+
+
+<AboutScreen@Screen>:
+    Button:
+        text: 'sample' 

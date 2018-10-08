@@ -1,0 +1,47 @@
+{
+    "1": {
+        "Category": "Instants",
+        "Name": "Drink",
+        "Amount": 20,
+        "Date": "2016-04-08 11:43:36"
+    },
+    "2": {
+        "Category": "Quantity-based",
+        "Name": "Wash Dishes",
+        "Quantity": 10,
+        "Amount": 10,
+        "Date": "2016-04-08 11:43:36"
+    },
+    "3": {
+        "Category": "Time-based",
+        "Name": "Shower",
+        "Duration (in s)": 1000,
+        "Amount": 30000,
+        "Date": "2016-04-08 11:43:36"
+    },
+    "4": {
+        "Category": "Time-based",
+        "Name": "Shower",
+        "Duration (in s)": 1000,
+        "Amount": 30000,
+        "Date": "2016-04-08 11:43:36"
+    },
+    "5": {
+        "Category": "Time-based",
+        "Name": "Shower",
+        "Duration (in s)": 1000,
+        "Amount": 30000
+    },
+    "6": {
+        "Category": "Time-based",
+        "Name": "Shower",
+        "Duration (in s)": 1000,
+        "Amount": 30000
+    },
+    "7": {
+        "Category": "Time-based",
+        "Name": "Shower",
+        "Duration (in s)": 1000,
+        "Amount": 30000
+    }
+}
