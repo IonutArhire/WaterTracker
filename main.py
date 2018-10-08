@@ -12,6 +12,10 @@ from kivy.properties import ObjectProperty
 from kivy.storage.jsonstore import JsonStore
 
 
+# class AddNewScreen(Screen):
+#     pass
+
+
 class StatsScreen(Screen):
 
     def __init__(self, **kwargs):
@@ -59,7 +63,6 @@ class WaterTrackerRoot(BoxLayout):
     def goToHistoryScreen(self):
         self.screen_manager.current = 'history_screen'
         self.history_screen.initialize()
-
 
 
 class WaterTrackerApp(App):
