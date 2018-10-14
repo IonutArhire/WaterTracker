@@ -1,0 +1,22 @@
+#:kivy 1.10.1
+
+
+
+<TitleLabel@Label>:
+    size_hint_y: None
+    height: self.texture_size[1] + (self.texture_size[1]/2)
+    bold: True
+
+
+<Button>:
+    font_size: min(root.height, root.width) * .2
+
+<BoxLayout>:
+    orientation: 'vertical'
+
+    # canvas:
+    #     Color:
+    #         rgba: 0,0,0,.5
+    #     Rectangle:
+    #         pos: self.pos
+    #         size: self.size

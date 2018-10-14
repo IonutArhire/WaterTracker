@@ -1,0 +1,81 @@
+#:kivy 1.10.1
+
+
+
+<AddNewBtn@Button>:
+    size_hint: None, None
+
+
+<AddNewBtnStack@StackLayout>:
+    size_hint_y: None
+    height: self.minimum_height
+
+
+<AddNewSection@BoxLayout>:
+    spacing: 10
+    size_hint_y: None
+    height: self.minimum_height
+
+
+<AddNewScreen@Screen>:
+    BoxLayout:
+        canvas:
+            Color:
+                rgba: 0,0,0,.5
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+        ScrollView:
+            size_hint: (None, None)
+            size: (root.width, root.height)
+
+            BoxLayout:
+                spacing: 10
+                size_hint_y: None
+                height: self.minimum_height
+
+                AddNewSection:
+                    TitleLabel:
+                        text: 'Instants'
+                        font_size: min(root.height, root.width) * .09
+
+                    AddNewBtnStack:
+                        AddNewBtn:
+                            size: root.width * .2 + self.texture_size[0], root.height * .2
+                            text: 'Drink'
+                        AddNewBtn:
+                            size: root.width * .2 + self.texture_size[0], root.height * .2
+                            text: 'Flush'
+                        AddNewBtn:
+                            size: root.width * .2 + self.texture_size[0], root.height * .2
+                            text: 'Washing Clothes'
+                        AddNewBtn:
+                            size: root.width * .2 + self.texture_size[0], root.height * .2
+                            text: 'Other'
+
+                AddNewSection:
+                    TitleLabel:
+                        text: 'Quantity-based'
+                        font_size: min(root.height, root.width) * .09
+
+                    AddNewBtnStack:
+                        AddNewBtn:
+                            size: root.width * .2 + self.texture_size[0], root.height * .2
+                            text: 'Washing Dishes'
+                        AddNewBtn:
+                            size: root.width * .2 + self.texture_size[0], root.height * .2
+                            text: 'Washing Clothes (Manually)'
+                        AddNewBtn:
+                            size: root.width * .2 + self.texture_size[0], root.height * .2
+                            text: 'Watering Plants'
+                            
+                AddNewSection:
+                    TitleLabel:
+                        text: 'Time-based'
+                        font_size: min(root.height, root.width) * .09
+
+                    AddNewBtnStack:
+                        AddNewBtn:
+                            size: root.width * .2 + self.texture_size[0], root.height * .2
+                            text: 'Showering'

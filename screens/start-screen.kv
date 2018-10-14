@@ -1,0 +1,25 @@
+#:kivy 1.10.1
+
+
+
+<StartScreen@Screen>:
+
+    BoxLayout:
+        spacing: min(root.width, root.height) * .02
+
+        TitleLabel:
+            text: 'Water Tracker'
+            font_size: min(root.height, root.width) * .13
+
+        Button:
+            text: 'Add New'
+            on_release: app.root.screen_manager.current = 'addnew_screen'
+        Button:
+            text: 'Stats'
+            on_release: app.root.screen_manager.current = 'stats_screen'
+        Button:
+            text: 'History'
+            on_release: app.root.screen_manager.current = 'history_screen'
+        Button:
+            text: 'About'
+            on_release: app.root.screen_manager.current = 'about_screen'
