@@ -2,7 +2,7 @@
 
 
 
-<AddNewBtn@Button>:
+<AddNewBtn>:
     size_hint: None, None
 
 
@@ -11,71 +11,33 @@
     height: self.minimum_height
 
 
-<AddNewSection@BoxLayout>:
+<AddNewSection>:
     spacing: 10
     size_hint_y: None
     height: self.minimum_height
 
+    _tl_text: ''
+    _tl_font_size: 0
+    _btn_stack: btn_stack
 
-<AddNewScreen@Screen>:
-    BoxLayout:
-        canvas:
-            Color:
-                rgba: 0,0,0,.5
-            Rectangle:
-                pos: self.pos
-                size: self.size
+    TitleLabel:
+        text: root._tl_text
+        font_size: root._tl_font_size
 
-        ScrollView:
-            size_hint: (None, None)
-            size: (root.width, root.height)
+    AddNewBtnStack:
+        id: btn_stack
 
-            BoxLayout:
-                spacing: 10
-                size_hint_y: None
-                height: self.minimum_height
 
-                AddNewSection:
-                    TitleLabel:
-                        text: 'Instants'
-                        font_size: min(root.height, root.width) * .09
+<AddNewScreenLayout@BoxLayout>:
+    content: content
 
-                    AddNewBtnStack:
-                        AddNewBtn:
-                            size: root.width * .2 + self.texture_size[0], root.height * .2
-                            text: 'Drink'
-                        AddNewBtn:
-                            size: root.width * .2 + self.texture_size[0], root.height * .2
-                            text: 'Flush'
-                        AddNewBtn:
-                            size: root.width * .2 + self.texture_size[0], root.height * .2
-                            text: 'Washing Clothes'
-                        AddNewBtn:
-                            size: root.width * .2 + self.texture_size[0], root.height * .2
-                            text: 'Other'
+    ScrollView:
+        size_hint: (None, None)
+        size: (root.width, root.height)
 
-                AddNewSection:
-                    TitleLabel:
-                        text: 'Quantity-based'
-                        font_size: min(root.height, root.width) * .09
+        BoxLayout:
+            id: content
+            spacing: 10
+            size_hint_y: None
+            height: self.minimum_height
 
-                    AddNewBtnStack:
-                        AddNewBtn:
-                            size: root.width * .2 + self.texture_size[0], root.height * .2
-                            text: 'Washing Dishes'
-                        AddNewBtn:
-                            size: root.width * .2 + self.texture_size[0], root.height * .2
-                            text: 'Washing Clothes (Manually)'
-                        AddNewBtn:
-                            size: root.width * .2 + self.texture_size[0], root.height * .2
-                            text: 'Watering Plants'
-                            
-                AddNewSection:
-                    TitleLabel:
-                        text: 'Time-based'
-                        font_size: min(root.height, root.width) * .09
-
-                    AddNewBtnStack:
-                        AddNewBtn:
-                            size: root.width * .2 + self.texture_size[0], root.height * .2
-                            text: 'Showering'

@@ -1,5 +1,10 @@
 import kivy
-kivy.require('1.9.1')
+kivy.require('1.10.1')
+
+# So that we can import from
+# other directories (like ./components)
+import sys
+sys.path.append('./components')
 
 from kivy.app import App
 from kivy.factory import Factory
@@ -8,12 +13,14 @@ from kivy.uix.button import Button
 from kivy.core.window import Window
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.screenmanager import Screen
-from kivy.properties import ObjectProperty
+from kivy.properties import ObjectProperty, StringProperty, NumericProperty
 from kivy.storage.jsonstore import JsonStore
 
+from addnew import *
 
-# class AddNewScreen(Screen):
-#     pass
+
+class RecordScreen(Screen):
+    pass
 
 
 class StatsScreen(Screen):
@@ -26,7 +33,7 @@ class StatsScreen(Screen):
 class HistoryScreen(Screen):
 
     store = JsonStore('storage.json')
-    
+
     def __init__(self, **kwargs):
         super(HistoryScreen, self).__init__(**kwargs)
         history_screen_layout = Factory.HistoryScreenLayout()
@@ -59,10 +66,6 @@ class WaterTrackerRoot(BoxLayout):
     def onBackBtn(self):
         self.screen_manager.current = 'start_screen'
         return True
-
-    def goToHistoryScreen(self):
-        self.screen_manager.current = 'history_screen'
-        self.history_screen.initialize()
 
 
 class WaterTrackerApp(App):
