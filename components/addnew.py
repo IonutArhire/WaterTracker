@@ -1,3 +1,4 @@
+from kivy.app import App
 from kivy.factory import Factory
 from kivy.uix.button import Button
 from kivy.uix.boxlayout import BoxLayout
@@ -6,6 +7,9 @@ from kivy.properties import ObjectProperty, StringProperty, NumericProperty
 
 
 class AddNewBtn(Button):
+
+    category = StringProperty()
+    action = StringProperty()
 
     def set_btn_size(self, obj, size):
         self.width = size[0] * .2 + self.texture_size[0]
@@ -41,7 +45,7 @@ class AddNewScreen(Screen):
     ]
 
     def __init__(self, **kwargs):
-        super(AddNewScreen, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         addnew_screen_layout = Factory.AddNewScreenLayout()
         self.add_widget(addnew_screen_layout)
 
@@ -55,23 +59,26 @@ class AddNewScreen(Screen):
             self.create_new_section('Time-based', self.time_based)
         )
 
-    def create_new_section(self, title, actions):
-        new_section = Factory.AddNewSection(_tl_text=title)
-        self.bind(size=lambda a, b: new_section.set_section_size(a, b))
-        self.populate_btn_stack(new_section, actions)
+    def create_new_section(self, category, actions):
+        new_section = Factory.AddNewSection(_tl_text=category)
+        self.bind(size=new_section.set_section_size)
+        self.populate_btn_stack(new_section, category, actions)
 
         return new_section
 
-    def populate_btn_stack(self, section, actions):
+    def populate_btn_stack(self, section, category, actions):
         for action in actions:
-            btn = self.create_new_btn(action)
+            btn = self.create_new_btn(category, action)
             section._btn_stack.add_widget(btn)
 
-    def create_new_btn(self, action):
-        btn = Factory.AddNewBtn(text=action)
-        self.bind(size=lambda a, b: btn.set_btn_size(a, b))
+    def create_new_btn(self, category, action):
+        btn = Factory.AddNewBtn(category=category, action=action, text=action)
+        self.bind(size=btn.set_btn_size)
+        btn.bind(on_release=self.start_recording)
 
         return btn
 
-    def start_recording(self, text):
-        print(text)
+    def start_recording(self, btn):
+        app = App.get_running_app()
+        app.root.screen_manager.current = 'record_screen'
+        app.root.record_screen.initialize(btn.category, btn.action)

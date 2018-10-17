@@ -17,16 +17,13 @@ from kivy.properties import ObjectProperty, StringProperty, NumericProperty
 from kivy.storage.jsonstore import JsonStore
 
 from addnew import *
-
-
-class RecordScreen(Screen):
-    pass
+from record import *
 
 
 class StatsScreen(Screen):
 
     def __init__(self, **kwargs):
-        super(StatsScreen, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.add_widget(Factory.StatsScreenLayout())
 
 
@@ -35,7 +32,7 @@ class HistoryScreen(Screen):
     store = JsonStore('storage.json')
 
     def __init__(self, **kwargs):
-        super(HistoryScreen, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         history_screen_layout = Factory.HistoryScreenLayout()
         self.add_widget(history_screen_layout)
 
@@ -61,7 +58,7 @@ class HistoryScreen(Screen):
 class WaterTrackerRoot(BoxLayout):
 
     screen_manager = ObjectProperty(None)
-    history_screen = ObjectProperty(None)
+    record_screen = ObjectProperty(None)
 
     def onBackBtn(self):
         self.screen_manager.current = 'start_screen'
@@ -71,7 +68,7 @@ class WaterTrackerRoot(BoxLayout):
 class WaterTrackerApp(App):
 
     def __init__(self, **kwargs):
-        super(WaterTrackerApp, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         Window.bind(on_keyboard=self.onBackBtn)
 
     def build(self):

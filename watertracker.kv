@@ -7,11 +7,13 @@
 #:include screens/stats-screen.kv
 #:include screens/history-screen.kv
 #:include screens/about-screen.kv
+#:include screens/record-screen.kv
 
 
 
 <WaterTrackerRoot>:
     screen_manager: screen_manager
+    record_screen: record_screen
 
     canvas.before:
         Rectangle:
@@ -29,6 +31,7 @@
         AddNewScreen:
             name: 'addnew_screen'
         RecordScreen:
+            id: record_screen
             name: 'record_screen'
         # END #
 

@@ -2,6 +2,21 @@
 
 
 
-<RecordScreen@Screen>:
+<RecordScreenLayout@BoxLayout>:
+    canvas:
+        Color:
+            rgba: 0,1,0,.5
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    Label:
+        text: 'Please input the approximative amount of water used (ml):'
+
+    TextInput:
+        multiline: False
+        input_type: 'number'
+        input_filter: 'int'
+
     Button:
-        text: 'ho'
+        text: 'Save'
