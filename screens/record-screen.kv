@@ -3,20 +3,48 @@
 
 
 <RecordScreenLayout@BoxLayout>:
-    canvas:
-        Color:
-            rgba: 0,1,0,.5
-        Rectangle:
-            pos: self.pos
-            size: self.size
+    padding: root.width * .15, root.height * .15
+    spacing: 10
+
+    TitleLabel:
+        size_hint_y: None
+        text_size: self.width, None
+        height: self.texture_size[1]
+        font_size: min(root.height, root.width) * .13
+
+        text: 'Instants: Drink'
+
+        halign: 'center'
+        valign: 'center'
 
     Label:
+        size_hint_y: None
+        text_size: self.width, None
+        height: self.texture_size[1]
+        font_size: min(root.height, root.width) * .05
+
         text: 'Please input the approximative amount of water used (ml):'
 
-    TextInput:
-        multiline: False
-        input_type: 'number'
-        input_filter: 'int'
+        halign: 'center'
+        valign: 'center'
 
-    Button:
-        text: 'Save'
+    BoxLayout:
+        spacing:10
+
+        TextInput:
+            multiline: False
+            input_type: 'number'
+            input_filter: 'int'
+
+            size_hint_y: None
+            height: root.height * .05
+
+        Button:
+            size_hint_y: None
+            height: root.height * .1
+
+            -font_size: min(self.height, self.width) * .4
+
+            text: 'Save'
+
+        Widget:
