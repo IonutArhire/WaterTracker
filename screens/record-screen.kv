@@ -6,38 +6,28 @@
     padding: root.width * .15, root.height * .15
     spacing: 10
 
-    TitleLabel:
-        size_hint_y: None
-        text_size: self.width, None
-        height: self.texture_size[1]
+    _tl_text: 'default'
+    _user_input: user_input
+
+    DynamicTitleLabel:
         font_size: min(root.height, root.width) * .13
+        text: root._tl_text
 
-        text: 'Instants: Drink'
-
-        halign: 'center'
-        valign: 'center'
-
-    Label:
-        size_hint_y: None
-        text_size: self.width, None
-        height: self.texture_size[1]
+    DynamicLabel:
         font_size: min(root.height, root.width) * .05
-
         text: 'Please input the approximative amount of water used (ml):'
 
-        halign: 'center'
-        valign: 'center'
-
     BoxLayout:
-        spacing:10
+        spacing: self.parent.spacing
 
         TextInput:
+            id: user_input
             multiline: False
             input_type: 'number'
             input_filter: 'int'
 
             size_hint_y: None
-            height: root.height * .05
+            height: root.height * .06
 
         Button:
             size_hint_y: None
@@ -46,5 +36,7 @@
             -font_size: min(self.height, self.width) * .4
 
             text: 'Save'
+
+            on_release: app.root._record_screen.record()
 
         Widget:

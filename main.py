@@ -14,10 +14,10 @@ from kivy.core.window import Window
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.screenmanager import Screen
 from kivy.properties import ObjectProperty, StringProperty, NumericProperty
-from kivy.storage.jsonstore import JsonStore
 
 from addnew import *
 from record import *
+from storage import store
 
 
 class StatsScreen(Screen):
@@ -29,39 +29,47 @@ class StatsScreen(Screen):
 
 class HistoryScreen(Screen):
 
-    store = JsonStore('storage.json')
-
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        history_screen_layout = Factory.HistoryScreenLayout()
-        self.add_widget(history_screen_layout)
+        self.history_screen_layout = Factory.HistoryScreenLayout()
+        self.add_widget(self.history_screen_layout)
 
-        for key in self.store.keys():
+        for key in store.keys():
             entry = Factory.HistoryEntry()
 
             entry_text = self.get_entry_text(key)
             entry_content = Factory.HistoryEntryLabel(text=entry_text)
 
             entry.add_widget(entry_content)
-            history_screen_layout.history_list.add_widget(entry)
+            self.history_screen_layout.history_list.add_widget(entry)
 
     def get_entry_text(self, key):
         result = ''
-        entity = self.store.get(key)
+        entity = store.get(key)
 
         for key, val in entity.items():
             result += key + ': ' + str(val) + '\n'
 
         return result[:-1]
 
+    def update(self, new_id):
+        new_entry = Factory.HistoryEntry()
+
+        entry_text = self.get_entry_text(new_id)
+        entry_content = Factory.HistoryEntryLabel(text=entry_text)
+
+        new_entry.add_widget(entry_content)
+        self.history_screen_layout.history_list.add_widget(new_entry)
+
 
 class WaterTrackerRoot(BoxLayout):
 
-    screen_manager = ObjectProperty(None)
-    record_screen = ObjectProperty(None)
+    _screen_manager = ObjectProperty(None)
+    _record_screen = ObjectProperty(None)
+    _history_screen = ObjectProperty(None)
 
     def onBackBtn(self):
-        self.screen_manager.current = 'start_screen'
+        self._screen_manager.current = 'start_screen'
         return True
 
 

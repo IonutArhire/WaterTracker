@@ -49,13 +49,13 @@ class AddNewScreen(Screen):
         addnew_screen_layout = Factory.AddNewScreenLayout()
         self.add_widget(addnew_screen_layout)
 
-        addnew_screen_layout.content.add_widget(
+        addnew_screen_layout._content.add_widget(
             self.create_new_section('Instants', self.instants)
         )
-        addnew_screen_layout.content.add_widget(
+        addnew_screen_layout._content.add_widget(
             self.create_new_section('Quantity-based', self.quantity_based)
         )
-        addnew_screen_layout.content.add_widget(
+        addnew_screen_layout._content.add_widget(
             self.create_new_section('Time-based', self.time_based)
         )
 
@@ -80,5 +80,5 @@ class AddNewScreen(Screen):
 
     def start_recording(self, btn):
         app = App.get_running_app()
-        app.root.screen_manager.current = 'record_screen'
-        app.root.record_screen.initialize(btn.category, btn.action)
+        app.root._screen_manager.current = 'record_screen'
+        app.root._record_screen.initialize(btn.category, btn.action)

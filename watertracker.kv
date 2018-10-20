@@ -12,8 +12,9 @@
 
 
 <WaterTrackerRoot>:
-    screen_manager: screen_manager
-    record_screen: record_screen
+    _screen_manager: screen_manager
+    _record_screen: record_screen
+    _history_screen: history_screen
 
     canvas.before:
         Rectangle:
@@ -38,6 +39,7 @@
         StatsScreen:
             name: 'stats_screen'
         HistoryScreen:
+            id: history_screen
             name: 'history_screen'
         AboutScreen:
             name: 'about_screen'

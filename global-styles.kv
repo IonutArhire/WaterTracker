@@ -2,11 +2,24 @@
 
 
 
+<DynamicLabel@Label>:
+    size_hint_y: None
+    text_size: self.width, None
+    height: self.texture_size[1]
+    halign: 'center'
+    valign: 'center'
+
 <TitleLabel@Label>:
     size_hint_y: None
     height: self.texture_size[1] + (self.texture_size[1]/2)
     bold: True
-
+    
+<DynamicTitleLabel@TitleLabel>:
+    size_hint_y: None
+    text_size: self.width, None
+    height: self.texture_size[1]
+    halign: 'center'
+    valign: 'center'
 
 <Button>:
     font_size: min(root.height, root.width) * .2
