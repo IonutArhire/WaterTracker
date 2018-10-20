@@ -75,13 +75,14 @@ class AddNewScreen(Screen):
         btn = Factory.AddNewBtn(
             _category=category, _action=action, text=action)
         self.bind(size=btn.set_btn_size)
-        btn.bind(on_release=self.start_recording)
+        btn.bind(on_release=self.start_adding)
 
         return btn
 
-    def start_recording(self, btn):
+    def start_adding(self, btn):
         app = App.get_running_app()
         screen_manager = app.root._screen_manager
 
-        screen_manager.current = 'record_screen'
-        screen_manager._record_screen.initialize(btn._category, btn._action)
+        screen_manager.current = 'add_instants_screen'
+        screen_manager._add_instants_screen.initialize(
+            btn._category, btn._action)

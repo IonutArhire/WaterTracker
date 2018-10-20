@@ -17,22 +17,22 @@ from uuid import uuid4
 from storage import store
 
 
-class RecordScreen(Screen):
+class AddInstantsScreen(Screen):
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self.record_screen_layout = Factory.RecordScreenLayout()
-        self.add_widget(self.record_screen_layout)
+        self.screen_layout = Factory.AddInstantsLayout()
+        self.add_widget(self.screen_layout)
 
     def initialize(self, category, action):
         self.category = category
         self.action = action
 
-        self.record_screen_layout._tl_text = f'{self.category}: {self.action}'
+        self.screen_layout._tl_text = f'{self.category}: {self.action}'
 
-    def record(self):
+    def add(self):
         new_id = str(uuid4())
-        amount = self.record_screen_layout._user_input.text
+        amount = self.screen_layout._user_input.text
         cur_date = str(datetime.now())
 
         store.put(new_id,
