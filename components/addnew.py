@@ -8,8 +8,8 @@ from kivy.properties import ObjectProperty, StringProperty, NumericProperty
 
 class AddNewBtn(Button):
 
-    category = StringProperty()
-    action = StringProperty()
+    _category = StringProperty()
+    _action = StringProperty()
 
     def set_btn_size(self, obj, size):
         self.width = size[0] * .2 + self.texture_size[0]
@@ -72,7 +72,8 @@ class AddNewScreen(Screen):
             section._btn_stack.add_widget(btn)
 
     def create_new_btn(self, category, action):
-        btn = Factory.AddNewBtn(category=category, action=action, text=action)
+        btn = Factory.AddNewBtn(
+            _category=category, _action=action, text=action)
         self.bind(size=btn.set_btn_size)
         btn.bind(on_release=self.start_recording)
 
@@ -80,5 +81,7 @@ class AddNewScreen(Screen):
 
     def start_recording(self, btn):
         app = App.get_running_app()
-        app.root._screen_manager.current = 'record_screen'
-        app.root._record_screen.initialize(btn.category, btn.action)
+        screen_manager = app.root._screen_manager
+
+        screen_manager.current = 'record_screen'
+        screen_manager._record_screen.initialize(btn._category, btn._action)

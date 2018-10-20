@@ -13,8 +13,6 @@
 
 <WaterTrackerRoot>:
     _screen_manager: screen_manager
-    _record_screen: record_screen
-    _history_screen: history_screen
 
     canvas.before:
         Rectangle:
@@ -25,10 +23,14 @@
 
     ScreenManager:
         id: screen_manager
+
+        _record_screen: record_screen
+        _history_screen: history_screen
+
         StartScreen:
             name: 'start_screen'
 
-        # Add New Functionality #
+        # BEGIN (ADDNEW functionality) #
         AddNewScreen:
             name: 'addnew_screen'
         RecordScreen:

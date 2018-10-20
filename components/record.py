@@ -43,4 +43,4 @@ class RecordScreen(Screen):
 
         # Update the history screen with the newly inserted record
         app = App.get_running_app()
-        app.root._history_screen.update(new_id)
+        app.root._screen_manager._history_screen.update(new_id)

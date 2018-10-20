@@ -65,8 +65,6 @@ class HistoryScreen(Screen):
 class WaterTrackerRoot(BoxLayout):
 
     _screen_manager = ObjectProperty(None)
-    _record_screen = ObjectProperty(None)
-    _history_screen = ObjectProperty(None)
 
     def onBackBtn(self):
         self._screen_manager.current = 'start_screen'
