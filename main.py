@@ -15,9 +15,11 @@ from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.screenmanager import Screen
 from kivy.properties import ObjectProperty, StringProperty, NumericProperty
 
-from addnew import *
-from record import *
 from storage import store
+
+from actions import *
+from add_qbased import *
+from add_instants import *
 
 
 class StatsScreen(Screen):

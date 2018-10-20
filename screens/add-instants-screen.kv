@@ -26,8 +26,10 @@
             input_type: 'number'
             input_filter: 'int'
 
+            hint_text: 'amount'
+
             size_hint_y: None
-            height: root.height * .06
+            height: max(root.height * .06, dp(30))
 
         Button:
             size_hint_y: None

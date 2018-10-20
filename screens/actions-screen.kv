@@ -2,33 +2,33 @@
 
 
 
-<AddNewBtn>:
+<ActionBtn>:
     size_hint: None, None
     
     _category: 'default'
     _action: 'default'
 
 
-<AddNewBtnStack@StackLayout>:
+<ActionsStack@StackLayout>:
     size_hint_y: None
     height: self.minimum_height
 
 
-<AddNewSection>:
+<ActionsSection>:
     spacing: 10
     size_hint_y: None
     height: self.minimum_height
 
     _tl_text: 'default'
     _tl_font_size: 0
-    _btn_stack: btn_stack
+    _actions_stack: actions_stack
 
     TitleLabel:
         text: root._tl_text
         font_size: root._tl_font_size
 
-    AddNewBtnStack:
-        id: btn_stack
+    ActionsStack:
+        id: actions_stack
 
 
 <AddNewScreenLayout@BoxLayout>:

@@ -1,0 +1,56 @@
+#:kivy 1.10.1
+
+
+
+<AddQBasedLayout@BoxLayout>:
+    padding: root.width * .1, root.height * .1
+    spacing: 10
+
+    _tl_text: 'default'
+    _user_input_quantity: user_input_quantity
+    _user_input_amount: user_input_amount
+
+    DynamicTitleLabel:
+        font_size: min(root.height, root.width) * .13
+        text: root._tl_text
+
+    DynamicLabel:
+        font_size: min(root.height, root.width) * .05
+        text: 'Please input the quantity and the approximative amount of water used for each one (ml):'
+
+    BoxLayout:
+        spacing: self.parent.spacing
+
+        TextInput:
+            id: user_input_quantity
+            multiline: False
+            input_type: 'number'
+            input_filter: 'int'
+
+            hint_text: 'quantity'
+
+            size_hint_y: None
+            height: max(root.height * .06, dp(30))
+
+        TextInput:
+            id: user_input_amount
+            multiline: False
+            input_type: 'number'
+            input_filter: 'int'
+
+            hint_text: 'amount'
+
+            size_hint_y: None
+            height: max(root.height * .06, dp(30))
+
+        Button:
+            size_hint_y: None
+            height: root.height * .1
+
+            -font_size: min(self.height, self.width) * .4
+
+            text: 'Save'
+
+            on_release: app.root._screen_manager._add_qbased_screen.add()
+
+        Widget:

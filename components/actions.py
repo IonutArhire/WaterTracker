@@ -6,7 +6,7 @@ from kivy.uix.screenmanager import Screen
 from kivy.properties import ObjectProperty, StringProperty, NumericProperty
 
 
-class AddNewBtn(Button):
+class ActionBtn(Button):
 
     _category = StringProperty()
     _action = StringProperty()
@@ -16,16 +16,16 @@ class AddNewBtn(Button):
         self.height = size[1] * .2
 
 
-class AddNewSection(BoxLayout):
+class ActionsSection(BoxLayout):
     _tl_text = StringProperty()
     _tl_font_size = NumericProperty(0)
-    _btn_stack = ObjectProperty(None)
+    _actions_stack = ObjectProperty(None)
 
     def set_section_size(self, obj, size):
         self._tl_font_size = min(size[0], size[1]) * .09
 
 
-class AddNewScreen(Screen):
+class ActionsScreen(Screen):
 
     instants = [
         'Drink',
@@ -46,43 +46,49 @@ class AddNewScreen(Screen):
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        addnew_screen_layout = Factory.AddNewScreenLayout()
-        self.add_widget(addnew_screen_layout)
+        self.screen_layout = Factory.AddNewScreenLayout()
+        self.add_widget(self.screen_layout)
 
-        addnew_screen_layout._content.add_widget(
+        self.screen_layout._content.add_widget(
             self.create_new_section('Instants', self.instants)
         )
-        addnew_screen_layout._content.add_widget(
+        self.screen_layout._content.add_widget(
             self.create_new_section('Quantity-based', self.quantity_based)
         )
-        addnew_screen_layout._content.add_widget(
+        self.screen_layout._content.add_widget(
             self.create_new_section('Time-based', self.time_based)
         )
 
     def create_new_section(self, category, actions):
-        new_section = Factory.AddNewSection(_tl_text=category)
+        new_section = Factory.ActionsSection(_tl_text=category)
         self.bind(size=new_section.set_section_size)
-        self.populate_btn_stack(new_section, category, actions)
+        self.populate_actions_stack(new_section, category, actions)
 
         return new_section
 
-    def populate_btn_stack(self, section, category, actions):
+    def populate_actions_stack(self, section, category, actions):
         for action in actions:
-            btn = self.create_new_btn(category, action)
-            section._btn_stack.add_widget(btn)
+            action_btn = self.create_new_action_btn(category, action)
+            section._actions_stack.add_widget(action_btn)
 
-    def create_new_btn(self, category, action):
-        btn = Factory.AddNewBtn(
+    def create_new_action_btn(self, category, action):
+        action_btn = Factory.ActionBtn(
             _category=category, _action=action, text=action)
-        self.bind(size=btn.set_btn_size)
-        btn.bind(on_release=self.start_adding)
+        self.bind(size=action_btn.set_btn_size)
+        action_btn.bind(on_release=self.start_adding)
 
-        return btn
+        return action_btn
 
-    def start_adding(self, btn):
+    def start_adding(self, action_btn):
         app = App.get_running_app()
         screen_manager = app.root._screen_manager
 
-        screen_manager.current = 'add_instants_screen'
-        screen_manager._add_instants_screen.initialize(
-            btn._category, btn._action)
+        if action_btn._category == 'Instants':
+            screen_manager.current = 'add_instants_screen'
+            screen_manager._add_instants_screen.initialize(
+                action_btn._category, action_btn._action)
+
+        elif action_btn._category == 'Quantity-based':
+            screen_manager.current = 'add_qbased_screen'
+            screen_manager._add_qbased_screen.initialize(
+                action_btn._category, action_btn._action)

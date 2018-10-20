@@ -3,11 +3,12 @@
 
 #:include global-styles.kv
 #:include screens/start-screen.kv
-#:include screens/addnew-screen.kv
 #:include screens/stats-screen.kv
-#:include screens/history-screen.kv
 #:include screens/about-screen.kv
-#:include screens/record-screen.kv
+#:include screens/actions-screen.kv
+#:include screens/history-screen.kv
+#:include screens/add-qbased-screen.kv
+#:include screens/add-instants-screen.kv
 
 
 
@@ -25,17 +26,21 @@
         id: screen_manager
 
         _add_instants_screen: add_instants_screen
+        _add_qbased_screen: add_qbased_screen
         _history_screen: history_screen
 
         StartScreen:
             name: 'start_screen'
 
         # BEGIN (ADDNEW functionality) #
-        AddNewScreen:
-            name: 'addnew_screen'
+        ActionsScreen:
+            name: 'actions_screen'
         AddInstantsScreen:
             id: add_instants_screen
             name: 'add_instants_screen'
+        AddQBasedScreen: # for quantity-based actions
+            id: add_qbased_screen
+            name: 'add_qbased_screen'
         # END #
 
         StatsScreen:
