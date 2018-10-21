@@ -1,0 +1,33 @@
+#:kivy 1.10.1
+
+
+
+<AddTBasedLayout@BoxLayout>:
+    padding: root.width * .15, root.height * .15
+    spacing: 10
+
+    _tl_text: 'default'
+
+    DynamicTitleLabel:
+        font_size: min(root.height, root.width) * .13
+        text: root._tl_text
+
+    BoxLayout:
+        orientation: 'vertical'
+        spacing: 10
+
+        DynamicLabel:
+            size_hint_y: None
+            font_size: min(root.height, root.width) * .05
+            text: 'Press the stopwatch below to start the timer:'
+
+        AnchorLayout:
+            anchor_x: 'center'
+            anchor_y: 'center'
+            
+            Button:
+                size_hint: None, None
+                width: min(root.height, root.width) * .35
+                height: self.width
+
+                text: 'Stopwatch'

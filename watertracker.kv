@@ -8,6 +8,7 @@
 #:include screens/actions-screen.kv
 #:include screens/history-screen.kv
 #:include screens/add-qbased-screen.kv
+#:include screens/add-tbased-screen.kv
 #:include screens/add-instants-screen.kv
 
 
@@ -27,6 +28,7 @@
 
         _add_instants_screen: add_instants_screen
         _add_qbased_screen: add_qbased_screen
+        _add_tbased_screen: add_tbased_screen
         _history_screen: history_screen
 
         StartScreen:
@@ -41,6 +43,9 @@
         AddQBasedScreen: # for quantity-based actions
             id: add_qbased_screen
             name: 'add_qbased_screen'
+        AddTBasedScreen: # for time-based actions
+            id: add_tbased_screen
+            name: 'add_tbased_screen'
         # END #
 
         StatsScreen:

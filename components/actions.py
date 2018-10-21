@@ -92,3 +92,8 @@ class ActionsScreen(Screen):
             screen_manager.current = 'add_qbased_screen'
             screen_manager._add_qbased_screen.initialize(
                 action_btn._category, action_btn._action)
+
+        elif action_btn._category == 'Time-based':
+            screen_manager.current = 'add_tbased_screen'
+            screen_manager._add_tbased_screen.initialize(
+                action_btn._category, action_btn._action)
