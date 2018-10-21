@@ -2,20 +2,6 @@
 
 
 
-<HistoryScreenLayout@BoxLayout>:
-    history_list: history_list
-
-    ScrollView:
-        size_hint: (None, None)
-        size: (root.width, root.height)
-        GridLayout:
-            id: history_list
-            cols: 1
-            spacing: 10
-            size_hint_y: None
-            height: self.minimum_height
-
-            
 <HistoryEntry@GridLayout>:
     cols: 1
     size_hint: 1, None
@@ -30,7 +16,25 @@
 
 
 <HistoryEntryLabel@Label>:
-    text: 'None'
+    text: 'default'
     size_hint: None, None
     halign: 'left'
     size: self.texture_size
+
+
+<HistoryScreenLayout@BoxLayout>:
+    history_list: history_list
+
+    ScrollView:
+        size_hint: (None, None)
+        size: (root.width, root.height)
+
+        StackLayout:
+            id: history_list
+
+            orientation: 'lr-bt'
+            size_hint_y: None
+            
+            spacing: 10
+
+            height: self.minimum_height
