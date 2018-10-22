@@ -2,11 +2,12 @@
 
 
 
-<AddTBasedLayout@BoxLayout>:
+<AddTBasedLayout1@BoxLayout>:
     padding: root.width * .15, root.height * .15
     spacing: 10
 
     _tl_text: 'default'
+    _stopwatch_text: 'Stopwatch'
 
     DynamicTitleLabel:
         font_size: min(root.height, root.width) * .13
@@ -30,4 +31,61 @@
                 width: min(root.height, root.width) * .35
                 height: self.width
 
-                text: 'Stopwatch'
+                -font_size: min(self.height, self.width) * .15
+
+                text: root._stopwatch_text
+
+                on_release: app.root._screen_manager._add_tbased_screen.on_click_stopwatch()
+
+
+<AddTBasedLayout2@BoxLayout>:
+    padding: root.width * .15, root.height * .15
+    spacing: 10
+
+    _tl_text: 'default'
+    _stopwatch_result: 'default'
+    _user_input: user_input
+
+    DynamicTitleLabel:
+        font_size: min(root.height, root.width) * .13
+        text: root._tl_text
+
+    BoxLayout:
+        orientation: 'vertical'
+        spacing: 10
+
+        DynamicLabel:
+            size_hint_y: None
+            font_size: min(root.height, root.width) * .05
+            text: root._stopwatch_result
+
+        DynamicLabel:
+            size_hint_y: None
+            font_size: min(root.height, root.width) * .05
+            text: 'Please input the approximative amount of water used per second (ml/s):'
+
+        BoxLayout:
+            spacing: self.parent.spacing
+
+            TextInput:
+                id: user_input
+                multiline: False
+                input_type: 'number'
+                input_filter: 'int'
+
+                hint_text: 'amount'
+
+                size_hint_y: None
+                height: max(root.height * .06, dp(30))
+
+            Button:
+                size_hint_y: None
+                height: root.height * .1
+
+                -font_size: min(self.height, self.width) * .4
+
+                text: 'Save'
+
+                on_release: app.root._screen_manager._add_tbased_screen.add()
+
+            Widget:

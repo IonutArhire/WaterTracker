@@ -28,7 +28,7 @@ class AddQBasedScreen(Screen):
         self.category = category
         self.action = action
 
-        self.screen_layout._tl_text = f'{self.action}'
+        self.screen_layout._tl_text = self.action
 
     def add(self):
         new_id = str(uuid4())
@@ -39,6 +39,7 @@ class AddQBasedScreen(Screen):
         store.put(new_id,
                   category=self.category,
                   action=self.action,
+                  total_amount=int(quantity) * int(amount_per_item),
                   quantity=quantity,
                   amount_per_item=amount_per_item,
                   date=cur_date)

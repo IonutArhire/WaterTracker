@@ -28,7 +28,7 @@ class AddInstantsScreen(Screen):
         self.category = category
         self.action = action
 
-        self.screen_layout._tl_text = f'{self.action}'
+        self.screen_layout._tl_text = self.action
 
     def add(self):
         new_id = str(uuid4())
