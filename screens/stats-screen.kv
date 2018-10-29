@@ -2,6 +2,54 @@
 
 
 
-<StatsScreenLayout@BoxLayout>:
-    Button:
-        text: 'sample'
+<StatsTable@GridLayout>:
+    cols: 2
+    size_hint_y: None
+    height: self.minimum_height
+
+
+<StatsSection>:
+    size_hint_y: None
+    height: self.minimum_height
+
+    _tl_text: 'default'
+    _tl_font_size: 0
+    _stats_table: stats_table
+
+    TitleLabel:
+        text: root._tl_text
+        font_size: root._tl_font_size
+
+    GridLayout:
+        size_hint_y: None
+        height: 25
+        cols: 2
+
+        DynamicLabel:
+            bold: True
+            text: "Action"
+
+        DynamicLabel:
+            bold: True
+            text: "Amount"
+
+    StatsTable:
+        id: stats_table
+
+
+<StatsScreenLayout@ScrollView>:
+    _content: content
+    _total_lbl: total_lbl
+
+    BoxLayout:
+        id: content
+        spacing: 10
+        size_hint_y: None
+        height: self.minimum_height
+
+        DynamicLabel:
+            id: total_lbl
+            bold: True
+            text: 'default'
+
+        

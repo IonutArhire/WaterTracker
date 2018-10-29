@@ -15,8 +15,7 @@ from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.screenmanager import Screen
 from kivy.properties import ObjectProperty, StringProperty, NumericProperty
 
-from storage import store
-
+from stats import *
 from history import *
 from actions import *
 from add_qbased import *

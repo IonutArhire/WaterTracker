@@ -14,7 +14,7 @@ from datetime import datetime
 from uuid import uuid4
 
 
-from storage import store
+from storage import storage
 
 
 class AddQBasedScreen(Screen):
@@ -36,16 +36,17 @@ class AddQBasedScreen(Screen):
         amount_per_item = self.screen_layout._user_input_amount.text
         cur_date = str(datetime.now())
 
-        store.put(new_id,
-                  category=self.category,
-                  action=self.action,
-                  total_amount=int(quantity) * int(amount_per_item),
-                  quantity=quantity,
-                  amount_per_item=amount_per_item,
-                  date=cur_date)
+        storage.json_store.put(new_id,
+                               category=self.category,
+                               action=self.action,
+                               total_amount=int(quantity) *
+                               int(amount_per_item),
+                               quantity=quantity,
+                               amount_per_item=amount_per_item,
+                               date=cur_date)
 
-        # Update the history screen with the newly inserted record
+        # Update the live store with the newly inserted record
+        storage.store.append(storage.json_store.get(new_id))
+
         app = App.get_running_app()
-        app.root._screen_manager._history_screen.update(new_id)
-
         app.root._screen_manager.current = 'start_screen'

@@ -5,6 +5,8 @@ from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.screenmanager import Screen
 from kivy.properties import ObjectProperty, StringProperty, NumericProperty
 
+from storage import storage
+
 
 class ActionBtn(Button):
 
@@ -27,36 +29,19 @@ class ActionsSection(BoxLayout):
 
 class ActionsScreen(Screen):
 
-    instants = [
-        'Drink',
-        'Flush',
-        'Washing Clothes',
-        'Other'
-    ]
-
-    quantity_based = [
-        'Washing Dishes',
-        'Washing Clothes (manually)',
-        'Watering Plants'
-    ]
-
-    time_based = [
-        'Showering'
-    ]
-
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.screen_layout = Factory.AddNewScreenLayout()
         self.add_widget(self.screen_layout)
 
         self.screen_layout._content.add_widget(
-            self.create_new_section('Instants', self.instants)
+            self.create_new_section('Instants', storage.instants)
         )
         self.screen_layout._content.add_widget(
-            self.create_new_section('Quantity-based', self.quantity_based)
+            self.create_new_section('Quantity-based', storage.quantity_based)
         )
         self.screen_layout._content.add_widget(
-            self.create_new_section('Time-based', self.time_based)
+            self.create_new_section('Time-based', storage.time_based)
         )
 
     def create_new_section(self, category, actions):

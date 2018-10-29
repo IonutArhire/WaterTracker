@@ -16,7 +16,7 @@ from datetime import datetime
 from uuid import uuid4
 
 
-from storage import store
+from storage import storage
 
 
 class AddTBasedScreen(Screen):
@@ -70,16 +70,16 @@ class AddTBasedScreen(Screen):
         amount_per_second = self.screen_layout._user_input.text
         cur_date = str(datetime.now())
 
-        store.put(new_id,
-                  category=self.category,
-                  action=self.action,
-                  total_amount=int(amount_per_second) * self.time,
-                  seconds_passed=self.time,
-                  amount_per_second=amount_per_second,
-                  date=cur_date)
+        storage.json_store.put(new_id,
+                               category=self.category,
+                               action=self.action,
+                               total_amount=int(amount_per_second) * self.time,
+                               seconds_passed=self.time,
+                               amount_per_second=amount_per_second,
+                               date=cur_date)
 
-        # Update the history screen with the newly inserted record
+        # Update the live store with the newly inserted record
+        storage.store.append(storage.json_store.get(new_id))
+
         app = App.get_running_app()
-        app.root._screen_manager._history_screen.update(new_id)
-
         app.root._screen_manager.current = 'start_screen'
