@@ -14,8 +14,8 @@ class ActionBtn(Button):
     _action = StringProperty()
 
     def set_btn_size(self, obj, size):
-        self.width = size[0] * .2 + self.texture_size[0]
-        self.height = size[1] * .2
+        self.width = size[0] * .15 + self.texture_size[0]
+        self.height = size[1] * .15
 
 
 class ActionsSection(BoxLayout):

@@ -22,6 +22,8 @@ from add_qbased import *
 from add_tbased import *
 from add_instants import *
 
+Window.size = (400, 700)
+
 
 class StatsScreen(Screen):
 
