@@ -81,9 +81,7 @@ class StatsScreen(Screen):
             section._stats_table.add_widget(amount_lbl)
 
     def create_new_stats_label(self, text):
-        lbl = Label(text=str(text),
-                    size_hint_y=None,
-                    height=26)
+        lbl = Factory.DynamicLabel(text=str(text))
 
         return lbl
 
