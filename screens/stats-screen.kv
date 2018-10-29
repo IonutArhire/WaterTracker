@@ -2,6 +2,14 @@
 
 
 
+<StatsLabel>:
+    size_hint_y: None
+    text_size: self.width, None
+    height: self.texture_size[1]
+    halign: 'center'
+    valign: 'center'
+
+
 <StatsTable@GridLayout>:
     cols: 2
     size_hint_y: None
@@ -12,10 +20,14 @@
 <StatsSection>:
     size_hint_y: None
     height: self.minimum_height
+    spacing: 10
 
     _tl_text: 'default'
     _tl_font_size: 0
     _stats_table: stats_table
+
+    _action_header: action_header
+    _amount_header: amount_header
 
     TitleLabel:
         text: root._tl_text
@@ -26,11 +38,15 @@
         height: 25
         cols: 2
 
-        DynamicLabel:
+        height: self.minimum_height
+
+        StatsLabel:
+            id: action_header
             bold: True
             text: "Action"
 
-        DynamicLabel:
+        StatsLabel:
+            id: amount_header
             bold: True
             text: "Amount"
 
@@ -50,7 +66,11 @@
 
         DynamicLabel:
             id: total_lbl
+
             bold: True
+            font_size: min(root.height, root.width) * .05
+
             text: 'default'
+            
 
         

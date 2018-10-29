@@ -9,6 +9,12 @@ from kivy.properties import ObjectProperty, StringProperty, NumericProperty
 from storage import storage
 
 
+class StatsLabel(Label):
+
+    def set_lbl_size(self, obj, size):
+        self.font_size = min(size[0], size[1]) * .04
+
+
 class StatsSection(BoxLayout):
     _tl_text = StringProperty()
     _tl_font_size = NumericProperty(0)
@@ -65,6 +71,8 @@ class StatsScreen(Screen):
     def create_new_section(self, category, actions):
         new_section = Factory.StatsSection(_tl_text=category)
         self.bind(size=new_section.set_section_size)
+        self.bind(size=new_section._action_header.set_lbl_size)
+        self.bind(size=new_section._amount_header.set_lbl_size)
         self.populate_table(new_section, actions)
 
         return new_section
@@ -81,7 +89,8 @@ class StatsScreen(Screen):
             section._stats_table.add_widget(amount_lbl)
 
     def create_new_stats_label(self, text):
-        lbl = Factory.DynamicLabel(text=str(text))
+        lbl = Factory.StatsLabel(text=str(text))
+        self.bind(size=lbl.set_lbl_size)
 
         return lbl
 
