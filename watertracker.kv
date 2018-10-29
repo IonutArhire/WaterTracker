@@ -16,11 +16,14 @@
 <WaterTrackerRoot>:
     _screen_manager: screen_manager
 
-    canvas.before:
+    canvas:
+        Color:
+            a: .6
         Rectangle:
             pos: self.pos
             size: self.size
             source: './images/underwater.png'
+            
     padding: min(root.width, root.height) * .08
 
     ScreenManager:
