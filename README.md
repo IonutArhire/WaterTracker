@@ -1,2 +1,2 @@
 # WaterTracker
-Proof of concept for an easy app made in python with kivy.
+app made in python with kivy for tracking the amount of water a person uses over extended periods of time.
