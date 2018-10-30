@@ -15,7 +15,7 @@ from storage import storage
 class HistoryScreen(Screen):
 
     def __init__(self, **kwargs):
-        super().__init__(**kwargs)
+        super(HistoryScreen, self).__init__(**kwargs)
         self.screen_layout = Factory.HistoryScreenLayout()
         self.add_widget(self.screen_layout)
 

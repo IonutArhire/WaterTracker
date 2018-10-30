@@ -31,7 +31,7 @@ class StatsScreen(Screen):
     cache = {}
 
     def __init__(self, **kwargs):
-        super().__init__(**kwargs)
+        super(StatsScreen, self).__init__(**kwargs)
         self.screen_layout = Factory.StatsScreenLayout()
         self.add_widget(self.screen_layout)
 
@@ -108,4 +108,4 @@ class StatsScreen(Screen):
     def set_total_lbl(self):
         total = sum(self.cache[action]['total_amount']
                     for action in self.cache)
-        self.screen_layout._total_lbl.text = f'Total amount (ml): {total}'
+        self.screen_layout._total_lbl.text = 'Total amount (ml):' + str(total)

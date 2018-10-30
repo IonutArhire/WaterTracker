@@ -20,7 +20,7 @@ from storage import storage
 class AddQBasedScreen(Screen):
 
     def __init__(self, **kwargs):
-        super().__init__(**kwargs)
+        super(AddQBasedScreen, self).__init__(**kwargs)
         self.screen_layout = Factory.AddQBasedLayout()
         self.add_widget(self.screen_layout)
 

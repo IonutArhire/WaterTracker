@@ -20,7 +20,7 @@ from storage import storage
 class AddInstantsScreen(Screen):
 
     def __init__(self, **kwargs):
-        super().__init__(**kwargs)
+        super(AddInstantsScreen, self).__init__(**kwargs)
         self.screen_layout = Factory.AddInstantsLayout()
         self.add_widget(self.screen_layout)
 

@@ -30,7 +30,7 @@ class ActionsSection(BoxLayout):
 class ActionsScreen(Screen):
 
     def __init__(self, **kwargs):
-        super().__init__(**kwargs)
+        super(ActionsScreen, self).__init__(**kwargs)
         self.screen_layout = Factory.AddNewScreenLayout()
         self.add_widget(self.screen_layout)
 

@@ -25,7 +25,7 @@ class AddTBasedScreen(Screen):
     time = NumericProperty(-1)
 
     def __init__(self, **kwargs):
-        super().__init__(**kwargs)
+        super(AddTBasedScreen, self).__init__(**kwargs)
         self.screen_layout = Factory.AddTBasedLayout1()
         self.add_widget(self.screen_layout)
 
@@ -63,7 +63,8 @@ class AddTBasedScreen(Screen):
         self.add_widget(self.screen_layout)
 
         self.screen_layout._tl_text = self.action
-        self.screen_layout._stopwatch_result = f'Time passed: {str(self.time)}s'
+        self.screen_layout._stopwatch_result = 'Time passed:' + \
+            str(self.time) + 's'
 
     def add(self):
         new_id = str(uuid4())

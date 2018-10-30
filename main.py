@@ -28,7 +28,7 @@ Window.size = (400, 700)
 class StatsScreen(Screen):
 
     def __init__(self, **kwargs):
-        super().__init__(**kwargs)
+        super(StatsScreen, self).__init__(**kwargs)
         self.add_widget(Factory.StatsScreenLayout())
 
 
@@ -44,7 +44,7 @@ class WaterTrackerRoot(BoxLayout):
 class WaterTrackerApp(App):
 
     def __init__(self, **kwargs):
-        super().__init__(**kwargs)
+        super(WaterTrackerApp, self).__init__(**kwargs)
         Window.bind(on_keyboard=self.onBackBtn)
 
     def build(self):
