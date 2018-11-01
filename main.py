@@ -1,5 +1,5 @@
 import kivy
-kivy.require('1.10.1')
+kivy.require('1.10.0')
 
 # So that we can import from
 # other directories (like ./components)
