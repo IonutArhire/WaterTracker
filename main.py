@@ -13,14 +13,19 @@ from kivy.uix.button import Button
 from kivy.core.window import Window
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.screenmanager import Screen
-from kivy.properties import ObjectProperty, StringProperty, NumericProperty
 
+# pylint: disable=no-name-in-module
+from kivy.properties import ObjectProperty, StringProperty, NumericProperty
+# pylint: enable=no-name-in-module
+
+# pylint: disable=F0401
 from stats import *
 from history import *
 from actions import *
 from add_qbased import *
 from add_tbased import *
 from add_instants import *
+# pylint: enable=F0401
 
 
 class StatsScreen(Screen):
